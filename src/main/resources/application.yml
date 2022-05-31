@@ -1,3 +1,6 @@
+RecSys:
+  clientApp:
+    name: RecSys
 spring:
   jackson:
     serialization:
