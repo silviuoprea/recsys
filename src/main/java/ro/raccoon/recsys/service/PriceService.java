@@ -27,14 +27,6 @@ public interface PriceService {
     Price update(Price price);
 
     /**
-     * Partially updates a price.
-     *
-     * @param price the entity to update partially.
-     * @return the persisted entity.
-     */
-    Optional<Price> partialUpdate(Price price);
-
-    /**
      * Get all the prices.
      *
      * @param pageable the pagination information.

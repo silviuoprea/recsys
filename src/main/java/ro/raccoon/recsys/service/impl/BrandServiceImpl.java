@@ -40,22 +40,6 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public Optional<Brand> partialUpdate(Brand brand) {
-        log.debug("Request to partially update Brand : {}", brand);
-
-        return brandRepository
-            .findById(brand.getId())
-            .map(existingBrand -> {
-                if (brand.getBrandName() != null) {
-                    existingBrand.setBrandName(brand.getBrandName());
-                }
-
-                return existingBrand;
-            })
-            .map(brandRepository::save);
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Page<Brand> findAll(Pageable pageable) {
         log.debug("Request to get all Brands");

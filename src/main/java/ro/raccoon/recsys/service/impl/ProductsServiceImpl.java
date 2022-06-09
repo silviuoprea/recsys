@@ -40,25 +40,6 @@ public class ProductsServiceImpl implements ProductsService {
     }
 
     @Override
-    public Optional<Products> partialUpdate(Products products) {
-        log.debug("Request to partially update Products : {}", products);
-
-        return productsRepository
-            .findById(products.getId())
-            .map(existingProducts -> {
-                if (products.getProductName() != null) {
-                    existingProducts.setProductName(products.getProductName());
-                }
-                if (products.getDescription() != null) {
-                    existingProducts.setDescription(products.getDescription());
-                }
-
-                return existingProducts;
-            })
-            .map(productsRepository::save);
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Page<Products> findAll(Pageable pageable) {
         log.debug("Request to get all Products");

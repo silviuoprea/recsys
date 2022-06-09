@@ -40,34 +40,6 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public Optional<Price> partialUpdate(Price price) {
-        log.debug("Request to partially update Price : {}", price);
-
-        return priceRepository
-            .findById(price.getId())
-            .map(existingPrice -> {
-                if (price.getBasePrice() != null) {
-                    existingPrice.setBasePrice(price.getBasePrice());
-                }
-                if (price.getCostPrice() != null) {
-                    existingPrice.setCostPrice(price.getCostPrice());
-                }
-                if (price.getPriceAfterTax() != null) {
-                    existingPrice.setPriceAfterTax(price.getPriceAfterTax());
-                }
-                if (price.getStartDate() != null) {
-                    existingPrice.setStartDate(price.getStartDate());
-                }
-                if (price.getEndDate() != null) {
-                    existingPrice.setEndDate(price.getEndDate());
-                }
-
-                return existingPrice;
-            })
-            .map(priceRepository::save);
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Page<Price> findAll(Pageable pageable) {
         log.debug("Request to get all Prices");

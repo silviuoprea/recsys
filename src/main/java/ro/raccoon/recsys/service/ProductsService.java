@@ -27,14 +27,6 @@ public interface ProductsService {
     Products update(Products products);
 
     /**
-     * Partially updates a products.
-     *
-     * @param products the entity to update partially.
-     * @return the persisted entity.
-     */
-    Optional<Products> partialUpdate(Products products);
-
-    /**
      * Get all the products.
      *
      * @param pageable the pagination information.

@@ -40,22 +40,6 @@ public class ComplementServiceImpl implements ComplementService {
     }
 
     @Override
-    public Optional<Complement> partialUpdate(Complement complement) {
-        log.debug("Request to partially update Complement : {}", complement);
-
-        return complementRepository
-            .findById(complement.getId())
-            .map(existingComplement -> {
-                if (complement.getIsAccessoryTo() != null) {
-                    existingComplement.setIsAccessoryTo(complement.getIsAccessoryTo());
-                }
-
-                return existingComplement;
-            })
-            .map(complementRepository::save);
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Page<Complement> findAll(Pageable pageable) {
         log.debug("Request to get all Complements");

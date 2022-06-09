@@ -40,34 +40,6 @@ public class SpecificationsServiceImpl implements SpecificationsService {
     }
 
     @Override
-    public Optional<Specifications> partialUpdate(Specifications specifications) {
-        log.debug("Request to partially update Specifications : {}", specifications);
-
-        return specificationsRepository
-            .findById(specifications.getId())
-            .map(existingSpecifications -> {
-                if (specifications.getProductSize() != null) {
-                    existingSpecifications.setProductSize(specifications.getProductSize());
-                }
-                if (specifications.getWeight() != null) {
-                    existingSpecifications.setWeight(specifications.getWeight());
-                }
-                if (specifications.getColor() != null) {
-                    existingSpecifications.setColor(specifications.getColor());
-                }
-                if (specifications.getMaterial() != null) {
-                    existingSpecifications.setMaterial(specifications.getMaterial());
-                }
-                if (specifications.getSpecificationName() != null) {
-                    existingSpecifications.setSpecificationName(specifications.getSpecificationName());
-                }
-
-                return existingSpecifications;
-            })
-            .map(specificationsRepository::save);
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Page<Specifications> findAll(Pageable pageable) {
         log.debug("Request to get all Specifications");

@@ -124,51 +124,6 @@ public class RecsysApplication {
 		}
 
 		/**
-		 * {@code PATCH  /products/:id} : Partial updates given fields of an existing products, field will ignore if it is null
-		 *
-		 * @param id the id of the products to save.
-		 * @param products the products to update.
-		 * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated products,
-		 * or with status {@code 400 (Bad Request)} if the products is not valid,
-		 * or with status {@code 404 (Not Found)} if the products is not found,
-		 * or with status {@code 500 (Internal Server Error)} if the products couldn't be updated.
-		 * @throws URISyntaxException if the Location URI syntax is incorrect.
-		 */
-		@PatchMapping(value = "/products/{id}", consumes = { "application/json", "application/merge-patch+json" })
-		public ResponseEntity<Products> partialUpdateProducts(
-			@PathVariable(value = "id", required = false) final Long id,
-			@RequestBody Products products
-		) throws URISyntaxException {
-			log.debug("REST request to partial update Products partially : {}, {}", id, products);
-			if (products.getId() == null) {
-				return ResponseEntity
-						.badRequest()
-						.headers(MyUtils.createFailureAlert(applicationName, false, ENTITY_NAME, products.getId().toString(),"Invalid ID" ))
-						.body(null);
-			}
-			if (!Objects.equals(id, products.getId())) {
-				return ResponseEntity
-						.badRequest()
-						.headers(MyUtils.createFailureAlert(applicationName, false, ENTITY_NAME, products.getId().toString(),"Invalid ID" ))
-						.body(null);
-			}
-
-			if (!productsRepository.existsById(id)) {
-				return ResponseEntity
-						.badRequest()
-						.headers(MyUtils.createFailureAlert(applicationName, false, ENTITY_NAME, products.getId().toString(),"ID not found" ))
-						.body(null);
-			}
-
-			Optional<Products> result = productsService.partialUpdate(products);
-
-			return MyUtils.wrapOrNotFound(
-				result,
-				MyUtils.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, products.getId().toString())
-			);
-		}
-
-		/**
 		 * {@code GET  /products} : get all the products.
 		 *
 		 * @param pageable the pagination information.

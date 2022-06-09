@@ -27,14 +27,6 @@ public interface BrandService {
     Brand update(Brand brand);
 
     /**
-     * Partially updates a brand.
-     *
-     * @param brand the entity to update partially.
-     * @return the persisted entity.
-     */
-    Optional<Brand> partialUpdate(Brand brand);
-
-    /**
      * Get all the brands.
      *
      * @param pageable the pagination information.

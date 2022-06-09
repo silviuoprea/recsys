@@ -27,14 +27,6 @@ public interface ComplementService {
     Complement update(Complement complement);
 
     /**
-     * Partially updates a complement.
-     *
-     * @param complement the entity to update partially.
-     * @return the persisted entity.
-     */
-    Optional<Complement> partialUpdate(Complement complement);
-
-    /**
      * Get all the complements.
      *
      * @param pageable the pagination information.

@@ -27,14 +27,6 @@ public interface SpecificationsService {
     Specifications update(Specifications specifications);
 
     /**
-     * Partially updates a specifications.
-     *
-     * @param specifications the entity to update partially.
-     * @return the persisted entity.
-     */
-    Optional<Specifications> partialUpdate(Specifications specifications);
-
-    /**
      * Get all the specifications.
      *
      * @param pageable the pagination information.
