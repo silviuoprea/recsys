@@ -3,16 +3,13 @@ package ro.raccoon.recsys.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * A Complement.
  */
 @Entity
 @Table(name = "complement")
-public class Complement implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Complement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
@@ -30,8 +27,6 @@ public class Complement implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = { "prices", "specifications", "complements", "mainProducts", "brand" }, allowSetters = true)
     private Products mainProduct;
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
         return this.id;
@@ -97,13 +92,6 @@ public class Complement implements Serializable {
         return id != null && id.equals(((Complement) o).id);
     }
 
-    @Override
-    public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
-    }
-
-    // prettier-ignore
     @Override
     public String toString() {
         return "Complement{" +

@@ -3,16 +3,13 @@ package ro.raccoon.recsys.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * A Specifications.
  */
 @Entity
 @Table(name = "specifications")
-public class Specifications implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Specifications {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
@@ -143,13 +140,6 @@ public class Specifications implements Serializable {
         return id != null && id.equals(((Specifications) o).id);
     }
 
-    @Override
-    public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
-    }
-
-    // prettier-ignore
     @Override
     public String toString() {
         return "Specifications{" +

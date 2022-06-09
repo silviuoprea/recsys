@@ -3,7 +3,6 @@ package ro.raccoon.recsys.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,9 +11,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "products")
-public class Products implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Products {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
@@ -236,13 +233,6 @@ public class Products implements Serializable {
         return id != null && id.equals(((Products) o).id);
     }
 
-    @Override
-    public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
-    }
-
-    // prettier-ignore
     @Override
     public String toString() {
         return "Products{" +
