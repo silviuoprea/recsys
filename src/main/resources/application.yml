@@ -2,6 +2,9 @@ RecSys:
   clientApp:
     name: RecSys
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   jackson:
     serialization:
       indent-output: true
